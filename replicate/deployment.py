@@ -77,7 +77,20 @@ class DeploymentPredictionCollection(Collection):
         raise NotImplementedError()
 
     def get(self, id: str) -> Prediction:
-        raise NotImplementedError()
+        """
+        Get a prediction by ID.
+
+        Args:
+            id: The ID of the prediction.
+        Returns:
+            Prediction: The prediction object.
+        """
+
+        resp = self._client._request("GET", f"/v1/predictions/{id}")
+        obj = resp.json()
+        # HACK: resolve this? make it lazy somehow?
+        del obj["version"]
+        return self.prepare_model(obj)
 
     def create( # type: ignore
         self,
