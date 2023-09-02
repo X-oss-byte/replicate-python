@@ -65,8 +65,7 @@ class Version(BaseModel):
 
     def get_transformed_schema(self) -> dict:
         schema = self.openapi_schema
-        schema = make_schema_backwards_compatible(schema, self.cog_version)
-        return schema
+        return make_schema_backwards_compatible(schema, self.cog_version)
 
 
 class VersionCollection(Collection):
