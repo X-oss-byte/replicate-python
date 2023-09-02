@@ -8,8 +8,7 @@ from replicate.version import Version
 
 
 def create_client():
-    client = Client(api_token="abc123")
-    return client
+    return Client(api_token="abc123")
 
 
 def get_mock_schema():
